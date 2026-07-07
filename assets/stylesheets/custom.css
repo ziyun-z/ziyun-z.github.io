@@ -1,0 +1,214 @@
+/* ==========================================================================
+   Custom styles for Ziyun Zhao's personal site.
+   These sit on top of the Clarity template (main_free.css + clarity.css)
+   and only add the few pieces the template doesn't ship with:
+   a home hero profile photo, a simple top nav, and a blog post list.
+   Palette matches the template: gray-5 #f6f6f6, gray-10 #ececec,
+   gray-30 #c6c6c6, gray-50 #9f9fa0, gray-80 #666667, black #353535.
+   ========================================================================== */
+
+/* ---------- Home hero profile photo ---------- */
+#first-content .blog-cover img.profile {
+    border-radius: 20px;
+    max-width: 340px;
+    width: 100%;
+    object-fit: cover;
+}
+
+/* Waving hand emoji shouldn't inherit the serif title weight oddly */
+h1.title .wave {
+    display: inline-block;
+    transform-origin: 70% 70%;
+    animation: wave 2.4s ease-in-out 1;
+}
+@keyframes wave {
+    0%, 60%, 100% { transform: rotate(0deg); }
+    10%, 30% { transform: rotate(14deg); }
+    20%, 40% { transform: rotate(-8deg); }
+}
+
+/* ---------- Simple top navigation bar ---------- */
+.site-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
+    padding: 2.2vh 6vw;
+    background-color: #f6f6f6;
+    font-family: 'Poppins', sans-serif;
+}
+.site-nav .brand {
+    font-weight: 600;
+    font-size: 0.95em;
+    text-decoration: none;
+    color: #353535;
+    letter-spacing: 0.02em;
+}
+.site-nav .nav-links {
+    display: flex;
+    gap: 1.4em;
+}
+.site-nav .nav-links a {
+    font-size: 0.8em;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    color: #666667;
+    transition: color 0.15s ease;
+}
+.site-nav .nav-links a:hover,
+.site-nav .nav-links a.active {
+    color: #353535;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+/* ---------- Blog post list (home + blog index) ---------- */
+.post-list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1vh;
+}
+.post-card {
+    display: block;
+    text-decoration: none;
+    padding: 2.6vh 0;
+    border-bottom: 1px solid #ececec;
+}
+.post-list .post-card:first-child {
+    border-top: 1px solid #ececec;
+}
+.post-card .post-date {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.7em;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #9f9fa0;
+    margin-bottom: 0.4em;
+}
+.post-card .post-title {
+    font-family: 'Charter', serif;
+    font-weight: 600;
+    color: #353535;
+    padding: 0.2vh 0;
+    transition: color 0.15s ease;
+}
+.post-card .post-summary {
+    font-family: 'Charter', serif;
+    font-weight: 400;
+    color: #666667;
+    padding-top: 0.4em;
+    line-height: 1.5;
+}
+.post-card .read-more {
+    display: inline-block;
+    margin-top: 0.6em;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.72em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #353535;
+}
+.post-card:hover .post-title {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+.post-card:hover .read-more {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* Tag chips (optional, used on posts) */
+.tag {
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.68em;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #666667;
+    background-color: #ececec;
+    border-radius: 8px;
+    padding: 0.3em 0.7em;
+    margin: 0.2em 0.3em 0.2em 0;
+}
+
+/* Post meta line (date · reading time) on a post page */
+.post-meta {
+    font-family: 'Poppins', sans-serif !important;
+    font-style: normal !important;
+    font-size: 0.8em;
+    color: #9f9fa0;
+    letter-spacing: 0.02em;
+}
+
+/* ---------- Gallery (masonry grid) ---------- */
+.gallery {
+    columns: 3 240px;      /* as many ~240px+ columns as fit; auto-responsive */
+    column-gap: 14px;
+    margin-top: 1vh;
+}
+.gallery figure {
+    break-inside: avoid;
+    margin: 0 0 14px;
+    cursor: zoom-in;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #ececec;
+}
+.gallery figure img {
+    width: 100%;
+    display: block;
+    margin: 0;
+    padding: 0 !important;
+    transition: transform 0.35s ease, filter 0.35s ease;
+}
+.gallery figure:hover img {
+    transform: scale(1.04);
+    filter: brightness(0.95);
+}
+.gallery figcaption {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.72em;
+    color: #666667;
+    padding: 0.6em 0.2em 0.2em;
+    text-align: center;
+}
+
+/* ---------- Lightbox (click a photo to enlarge) ---------- */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(0, 0, 0, 0.9);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 5vh 5vw;
+    cursor: zoom-out;
+}
+.lightbox.open { display: flex; }
+.lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    border-radius: 6px;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+}
+.lightbox .lightbox-close {
+    position: absolute;
+    top: 16px;
+    right: 26px;
+    color: #fff;
+    font-size: 30px;
+    line-height: 1;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    user-select: none;
+}

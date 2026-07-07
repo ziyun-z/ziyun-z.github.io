@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  ============================================================================
+  BLOG POST TEMPLATE
+  ----------------------------------------------------------------------------
+  How to write a new post:
+    1. Copy this file to blog/your-post-name.html
+    2. Edit the <title>, the post title, date, and the content below.
+    3. Add a matching <a class="post-card"> entry on index.html (newest on top).
+
+  Content building blocks you can copy-paste inside <div class="container blog main">:
+    - Paragraph:      <p class="text">Your text...</p>
+    - Sub-heading:    <h2>Section title</h2>
+    - Bullet list:    <ul><li><p class="text">Item</p></li></ul>
+    - Numbered list:  <ol><li><p class="text">Item</p></li></ol>
+    - Link:           <a href="https://...">link text</a>
+    - Bold / italic:  <b>bold</b>, <em>italic</em>
+    - Inline code:    <code>example()</code>
+    - Code block:     <pre><code class="python">print("hi")</code></pre>
+  Wider image/figure blocks (use their own container, outside the text one):
+    - Figure:  <div class="container blog main gray"><img src="../assets/figures/x.png"><p class="caption">Caption.</p></div>
+  ============================================================================
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post title — Ziyun Zhao</title>
+    <meta name="description" content="Short description of this post.">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <meta name="robots" content="all">
+
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/stylesheets/main_free.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../clarity/clarity.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/stylesheets/custom.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/foundation.min.css">
+    <link href="../assets/fontawesome-free-7.2.0-web/css/all.min.css" rel="stylesheet">
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true }
+        });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+
+<body>
+    <!-- Top navigation -->
+    <nav class="site-nav">
+        <a class="brand" href="../index.html">Ziyun Zhao</a>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../index.html#blog">Blog</a>
+            <a href="../gallery.html">Gallery</a>
+        </div>
+    </nav>
+
+    <!-- Post title -->
+    <div class="container blog" id="first-content" style="background-color: #E0E4E6;">
+        <div class="blog-title no-cover">
+            <div class="blog-intro">
+                <div>
+                    <h1 class="title">Post title goes here</h1>
+                    <p class="author post-meta">Ziyun Zhao · 1 January 2026 · 5 min read</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Post body -->
+    <div class="container blog main first">
+        <p class="text">
+            Opening paragraph. Set up what this post is about.
+        </p>
+    </div>
+
+    <div class="container blog main">
+        <h1>A section heading</h1>
+        <p class="text">
+            More writing. Add as many <code>&lt;div class="container blog main"&gt;</code> blocks
+            as you need — each is one section.
+        </p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>
+                © 2026 Ziyun Zhao. This website is built on the
+                <a href="https://shikun.io/projects/clarity">Clarity Template</a>.
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="../clarity/clarity.js"></script>
+    <script src="../assets/scripts/main.js"></script>
+</body>
+</html>
