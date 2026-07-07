@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to my blog — Ziyun Zhao</title>
+    <meta name="description" content="A quick hello and a look at what I plan to write about here.">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <meta name="robots" content="all">
+
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/stylesheets/main_free.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../clarity/clarity.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/stylesheets/custom.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/foundation.min.css">
+    <link href="../assets/fontawesome-free-7.2.0-web/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Top navigation -->
+    <nav class="site-nav">
+        <a class="brand" href="../index.html">Ziyun Zhao</a>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../index.html#blog">Blog</a>
+            <a href="../gallery.html">Gallery</a>
+        </div>
+    </nav>
+
+    <!-- Post title -->
+    <div class="container blog" id="first-content" style="background-color: #E0E4E6;">
+        <div class="blog-title no-cover">
+            <div class="blog-intro">
+                <div>
+                    <h1 class="title">Welcome to my blog</h1>
+                    <p class="author post-meta">Ziyun Zhao · 6 July 2026 · 3 min read</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Post body -->
+    <div class="container blog main first">
+        <p class="text">
+            Hello, and welcome! This is the very first post on my new site. I built this space to
+            think out loud — to keep notes on what I'm learning, share the things I'm building, and
+            occasionally write about ideas that don't fit anywhere else.
+        </p>
+        <p class="text">
+            If you're reading this, thanks for stopping by. Here's a little about what to expect.
+        </p>
+    </div>
+
+    <div class="container blog main">
+        <h1>What I'll write about</h1>
+        <p class="text">
+            I don't want to box myself in too tightly, but a few themes I expect to keep coming back to:
+        </p>
+        <ul>
+            <li><p class="text"><b>Building things</b> — projects, experiments, and the lessons that only show up once you actually ship.</p></li>
+            <li><p class="text"><b>Learning in public</b> — notes on topics I'm working through, written for the version of me who didn't understand them yet.</p></li>
+            <li><p class="text"><b>Reflections</b> — the occasional longer piece on work, habits, and how I think about things.</p></li>
+        </ul>
+    </div>
+
+    <div class="container blog main">
+        <h1>How this site is built</h1>
+        <p class="text">
+            This site is a set of plain HTML pages styled with the
+            <a href="https://shikun.io/projects/clarity">Clarity</a> template — no build step, no
+            database, nothing to maintain. Each blog post is its own file in the <code>blog/</code>
+            folder, and the homepage links to them.
+        </p>
+        <p class="text">
+            Writing a new post is deliberately boring: copy the template, change the words, add one
+            link on the homepage. For example, a code block looks like this:
+        </p>
+<pre><code class="python">def greet(name):
+    return f"Hello, {name}! Welcome to the blog."
+
+print(greet("world"))</code></pre>
+        <p class="text">
+            That's really all there is to it. More soon.
+        </p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>
+                © 2026 Ziyun Zhao. This website is built on the
+                <a href="https://shikun.io/projects/clarity">Clarity Template</a>.
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="../clarity/clarity.js"></script>
+    <script src="../assets/scripts/main.js"></script>
+</body>
+</html>
