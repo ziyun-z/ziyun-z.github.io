@@ -7,7 +7,7 @@ My personal website and blog, built on the [Clarity](https://shikun.io/projects/
 - `index.html` — homepage (intro + blog list)
 - `gallery.html` — photo gallery (masonry grid + lightbox)
 - `blog/` — one HTML file per post; `blog/post-template.html` is the starting point for new posts
-- `gallery/` — image files shown in the gallery
+- `assets/gallery/` — image files shown in the gallery
 - `assets/`, `clarity/` — template styles, fonts, icons, and scripts (`assets/stylesheets/custom.css` holds site-specific styles)
 
 ## Add a blog post
@@ -17,7 +17,7 @@ My personal website and blog, built on the [Clarity](https://shikun.io/projects/
 
 ## Add a gallery photo
 
-1. Drop the image into `gallery/`.
+1. Drop the image into `assets/gallery/` (resize to ~1600px on the long edge first, so pages load fast).
 2. Copy a `<figure>` block in `gallery.html` and update its `src` and caption.
 
 ## Preview locally
