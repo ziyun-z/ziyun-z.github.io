@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No Rehearsal, No Internet, No Map — Ziyun Zhao</title>
+    <meta name="description" content="On Unitree's robots at the 2026 Spring Festival Gala, and why robotics still hasn't had its BERT moment — the missing pretraining corpus, the contact problem, and the path from athletic bodies to real intelligence.">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <meta name="robots" content="all">
+
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/stylesheets/main_free.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../clarity/clarity.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/stylesheets/custom.css" />
+    <link href="../assets/fontawesome-free-7.2.0-web/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Top navigation -->
+    <nav class="site-nav">
+        <a class="brand" href="../index.html">Ziyun Zhao</a>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../about.html">About</a>
+            <a href="../index.html#blog">Blog</a>
+            <a href="../gallery.html">Gallery</a>
+        </div>
+    </nav>
+
+    <!-- Post title -->
+    <div class="container blog" id="first-content" style="background-color: #E0E4E6;">
+        <div class="blog-title no-cover">
+            <div class="blog-intro">
+                <div>
+                    <h1 class="title">No Rehearsal, No Internet, No Map</h1>
+                    <p class="author post-meta">Ziyun Zhao · 23 February 2026 · 11 min read</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Post body -->
+    <div class="container blog main first">
+        <p class="text">
+            In the 2026 CMG Spring Festival Gala, Unitree's WuBOT put G1 and H2 humanoids on stage
+            with students from the Henan Tagou Martial Arts School: table-vault parkour, three-meter
+            aerial flips, chained single-leg backflips, a seven-and-a-half-rotation airflare, staff
+            work with dexterous hands, cluster repositioning at up to 4 m/s. MagicLab's Z1 landed a
+            continuous Thomas 360. Noetix ran backflips inside twelve square meters of stage in a
+            comedy sketch. Galbot, in a short film, folded clothes.
+        </p>
+        <p class="text">
+            Twelve months earlier, on the same stage, the previous generation twirled handkerchiefs
+            and needed a human hand to walk off.
+        </p>
+        <p class="text">
+            That delta is real, and it makes me think about the future of robotics and physical
+            intelligence.
+        </p>
+    </div>
+
+    <div class="container blog main">
+        <h1>I. There was a rehearsal. There is never a rehearsal.</h1>
+        <p class="text">
+            Give the Gala its due first, because the easy dismissal is wrong.
+        </p>
+        <p class="text">
+            This was a live broadcast to the largest television audience on Earth. No second take.
+            Moving props, hundreds of human dancers, a physical stage with changing surfaces, dozens
+            of robots holding formation while airborne.
+        </p>
+        <p class="text">
+            Now the other half. Before that live take: hundreds of millions of training iterations in
+            simulation, then fine-tuning on hardware. A launcher platform custom-built to give the
+            robots the height for those flips. Every agent on that stage, human and robot, executing a
+            plan known in advance to every other agent.
+        </p>
+        <p class="text">
+            So what did we learn? We learned these systems are robust to variance within a known
+            distribution. That is a hard property and they earned it. What we did not learn — because
+            the Gala could not have tested it — is whether they generalize to a distribution they've
+            never seen.
+        </p>
+        <p class="text">
+            Is the robot ready for real life? I think that's the wrong question; asking it that way
+            produces either hype or dismissal, both lazy. The better question:
+        </p>
+        <p class="text">
+            <em>How much of real life is rehearsable?</em>
+        </p>
+        <p class="text">
+            A factory is rehearsable. Fixed layout, known parts, repeatable task, and a reward
+            function you can literally write down because it's already a KPI someone is measured on.
+        </p>
+        <p class="text">
+            A home is not rehearsable. The layout changes. The objects are unbounded. A cat walks
+            through. The task is underspecified — "clean up" — and the success criterion lives in
+            someone's head and moves with their mood. There is no reward function, only a person's
+            taste. And a bad rollout isn't a retry with backoff; it's a broken heirloom.
+        </p>
+        <p class="text">
+            The Gala stage is much closer to a factory than to a home. So the correct read is: robots
+            are ready for environments you can rehearse — a big, real, valuable market — and that
+            tells you almost nothing about the other one.
+        </p>
+    </div>
+
+    <div class="container blog main">
+        <h1>II. Robotics hasn't had its BERT moment. It hasn't had word2vec.</h1>
+        <p class="text">
+            This is the part I can't stop thinking about.
+        </p>
+
+        <h2>What NLP had that robotics doesn't</h2>
+        <p class="text">
+            Word2vec in 2013. BERT in 2018 — the moment one pretrained representation started
+            transferring across nearly every downstream task, and the field stopped hand-building
+            features. GPT-3 in 2020. Then the deluge.
+        </p>
+        <p class="text">
+            Ask what made BERT possible. Not just the transformer. The internet already existed.
+            Trillions of tokens of real human language, produced by billions of people for their own
+            reasons, requiring nothing from us but a crawler. GPT-3 trained on roughly 300 billion
+            tokens that nobody collected for the purpose of training GPT-3. Language data was the
+            exhaust — a byproduct of humans doing what they were already doing.
+        </p>
+        <p class="text">
+            Robotics has no exhaust.
+        </p>
+        <p class="text">
+            Every trajectory must be manufactured: a physical machine, in physical space, at one-times
+            real time, usually with a human teleoperator, in a lab someone pays rent on. It doesn't
+            accumulate as a side effect of anything.
+        </p>
+        <p class="text">
+            And it doesn't pool the way text does. An English sentence from Reddit and one from a
+            novel are the same substrate. A trajectory from one robot's arm is not a trajectory from
+            another's — different kinematics, sensors, action space, contact geometry. Cross-embodiment
+            transfer is an open research problem precisely because it does not just work.
+        </p>
+        <p class="text">
+            So the pretraining substrate that made everything in NLP possible does not exist — and
+            unlike in NLP, it was never quietly accumulating in the background waiting for someone to
+            notice. My read: robotics is somewhere pre-word2vec. No general representation that
+            transfers, no "just fine-tune the foundation policy." Task-specific systems, trained per
+            embodiment, extremely good at what they were trained on. That's 2012 NLP with better
+            hardware.
+        </p>
+
+        <h2>"But we have simulation"</h2>
+        <p class="text">
+            Half right. Understanding which half is the most important technical point here.
+        </p>
+        <p class="text">
+            Simulation gives you dynamics. It does not give you contact.
+        </p>
+        <p class="text">
+            The dynamics half is real, and it's why the Gala looked the way it looked. A humanoid in a
+            ballistic arc — airborne, no contact, gravity and inertia only — is a rigid-body problem
+            that physics engines model nearly exactly. Randomize a little, fine-tune on hardware a
+            little, and it transfers. You can run a hundred million iterations overnight because
+            falling over in sim is free. That is precisely why the airflare was achievable, and
+            precisely why it was the thing they chose to show.
+        </p>
+        <p class="text">
+            Then the robot touches something, and you fall off a cliff. Contact is where physics
+            engines stop being physics engines and start being approximations with tuning knobs:
+        </p>
+        <ul class="text">
+            <li>
+                Friction is non-smooth. Stick-slip is a discontinuity. Solvers relax it into something
+                tractable, and the error isn't small unbiased noise — it's systematic distortion at
+                exactly the moment that matters.
+            </li>
+            <li>
+                Contact is stiff and chaotic. A small error in friction coefficient doesn't give you a
+                slightly different grasp. The object slips, or it doesn't. Errors don't average out;
+                they bifurcate.
+            </li>
+            <li>
+                Deformables are worse by an order of magnitude. Clothes, food, hair, cables, rice,
+                flour. No compact state representation, no cheap accurate solver, and material
+                parameters that are unmeasurable in practice.
+            </li>
+            <li>
+                Tactile sensing has no simulator worth the name, because you can't simulate what a
+                touch sensor would read when you can't simulate the physics it's sensing.
+            </li>
+        </ul>
+
+        <h2>"But world models"</h2>
+        <p class="text">
+            The hope: don't write the physics down — learn it from video, the way we learned language
+            from text. I want this to work. I don't think it rescues contact.
+        </p>
+        <p class="text">
+            Video contains appearance, not force. There's no channel in an RGB frame for friction,
+            mass, or compliance. The mapping from forces to pixels is many-to-one: a hand resting on a
+            table and a hand pressing hard on it look identical. You cannot invert that. It's
+            under-determination, not a data-scale problem you fix with more video.
+        </p>
+        <p class="text">
+            Plausibility is cheap; physics isn't. A model producing a gorgeous ten-second video is
+            doing something categorically easier than one predicting contact forces two hundred steps
+            deep in a closed control loop. Video generation is graded by human eyes. Control is graded
+            by physics.
+        </p>
+        <p class="text">
+            My guess: world models will be genuinely transformative for the high-level layer —
+            affordances, planning, what could plausibly happen next — and will not solve low-level
+            contact. Real progress. It just means the touch problem, the one standing between us and
+            every domestic and dexterous application, stays open.
+        </p>
+
+        <h2>Which leaves the unglamorous answer</h2>
+        <p class="text">
+            In language, money bought compute and compute bought capability. In robotics, money buys
+            robots and rooms and people, and those scale linearly and slowly. That's a fundamentally
+            different scaling law.
+        </p>
+    </div>
+
+    <div class="container blog main">
+        <h1>III. The easy ten-year forecast, and the impossible three-year one</h1>
+        <p class="text">
+            Today is clear. Bodies are athletic, cheap, shipping. Brains aren't ready. Locomotion is
+            largely won; manipulation, contact, and open-world reasoning are not. Factories yes, homes
+            no.
+        </p>
+        <p class="text">
+            Ten years out is also clear. There will be capable general-purpose machines doing physical
+            labor at scale. The economics are too enormous for it not to happen, and no law of nature
+            stands in the way. Humanoid form probably wins in human-built environments — not because
+            it's optimal, but because our doors and tools were built around a body plan, and copying
+            the body is cheaper than rebuilding the world.
+        </p>
+        <p class="text">
+            What I can't tell is the path between those two points. The path depends on which
+            bottleneck breaks first, and the candidates have wildly different time constants and
+            produce wildly different worlds:
+        </p>
+        <ul class="text">
+            <li>
+                <strong>The grind.</strong> Nothing breaks. Data accumulates linearly with fleet size,
+                capability accretes vertical by vertical, each with bespoke data collection. No BERT
+                moment, ever. Value goes to vertical integrators who own one niche end to end.
+            </li>
+            <li>
+                <strong>The flywheel ignites.</strong> Fleets get large enough that real-world data
+                compounds, and around 2029–2031 someone trains a policy that actually transfers across
+                tasks and embodiments. Value goes to whoever owns the fleet.
+            </li>
+            <li>
+                <strong>Simulation cracks.</strong> Someone solves differentiable contact and
+                deformables well enough that sim-trained manipulation transfers without real-world
+                fine-tuning.
+            </li>
+            <li>
+                <strong>Video transfer works.</strong> Manipulation priors learned from humans on
+                camera; robotics gets its internet secondhand. Unclear whether force can be recovered
+                from pixels. Largest single unlock available if it does.
+            </li>
+        </ul>
+    </div>
+
+    <div class="container blog main">
+        <h1>V. Why this is still the most exciting problem I know</h1>
+        <p class="text">
+            Everything above is a list of reasons this is hard. I don't read that as pessimism. A
+            field where the obstacles are legible — no pretraining corpus, no faithful contact
+            simulator, no shortcut around collecting real experience at one-times real time — is in far
+            better shape than a field that doesn't yet know what's blocking it.
+        </p>
+        <p class="text">
+            The other reason I'm optimistic is more selfish: in language, the scaling moment is behind
+            us. In robotics, it is still ahead. Whatever the equivalent of 2018 turns out to be — the
+            flywheel, the simulator, the transfer from human video — it hasn't happened yet, and the
+            people who make it happen are, right now, working on something that doesn't look like a
+            breakthrough.
+        </p>
+        <p class="text">
+            Which is why I'd bet the real ChatGPT moment for robotics won't look like the Gala at all.
+            It won't be a backflip. It'll be a robot in a room nobody rehearsed, handed a task nobody
+            scripted, doing something completely unremarkable — and getting it right.
+        </p>
+        <p class="text">
+            <em>I'd very much like to be in that room.</em>
+        </p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>
+                © 2026 Ziyun Zhao. This website is built on the
+                <a href="https://shikun.io/projects/clarity">Clarity Template</a>.
+            </p>
+        </div>
+    </footer>
+
+    <script src="../clarity/clarity.js"></script>
+    <script src="../assets/scripts/main.js"></script>
+</body>
+</html>
