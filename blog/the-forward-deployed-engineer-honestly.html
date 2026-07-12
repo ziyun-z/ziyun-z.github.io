@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Forward Deployed Engineer, Honestly — Ziyun Zhao</title>
+    <meta name="description" content="A serious look at the Forward Deployed Engineer role — what it actually is, why the labs are pouring billions into it, and how to tell a genuine career direction from a well-compensated detour.">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <meta name="robots" content="all">
+    <link rel="canonical" href="https://ziyun-z.github.io/blog/the-forward-deployed-engineer-honestly.html">
+    <meta content="article" property="og:type">
+    <meta content="The Forward Deployed Engineer, Honestly" property="og:title">
+    <meta content="https://ziyun-z.github.io/blog/the-forward-deployed-engineer-honestly.html" property="og:url">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "The Forward Deployed Engineer, Honestly",
+        "datePublished": "2026-03-07",
+        "dateModified": "2026-03-07",
+        "author": {
+            "@type": "Person",
+            "name": "Ziyun Zhao",
+            "url": "https://ziyun-z.github.io/"
+        },
+        "mainEntityOfPage": "https://ziyun-z.github.io/blog/the-forward-deployed-engineer-honestly.html",
+        "description": "A serious look at the Forward Deployed Engineer role — what it actually is, why the labs are pouring billions into it, and how to tell a genuine career direction from a well-compensated detour."
+    }
+    </script>
+
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/stylesheets/main_free.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../clarity/clarity.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/stylesheets/custom.css" />
+    <link href="../assets/fontawesome-free-7.2.0-web/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Top navigation -->
+    <nav class="site-nav">
+        <a class="brand" href="../index.html">Ziyun Zhao</a>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../about.html">About</a>
+            <a href="../index.html#blog">Blog</a>
+            <a href="../gallery.html">Gallery</a>
+        </div>
+    </nav>
+
+    <!-- Post title -->
+    <div class="container blog" id="first-content" style="background-color: #E0E4E6;">
+        <div class="blog-title no-cover">
+            <div class="blog-intro">
+                <div>
+                    <h1 class="title">The Forward Deployed Engineer, Honestly</h1>
+                    <p class="author post-meta">Ziyun Zhao · 7 March 2026 · 10 min read</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Post body -->
+    <div class="container blog main first">
+        <p class="text">
+            Every few months tech invents a job title and then spends a year arguing about what it
+            means. Right now that title is Forward Deployed Engineer.
+        </p>
+        <p class="text">
+            I've been looking at this role seriously and trying to figure out whether FDE is a genuine
+            career direction or a well-compensated detour. This post is what I found.
+        </p>
+    </div>
+
+    <div class="container blog main">
+        <h1>1. What an FDE actually is</h1>
+        <p class="text">
+            The term is borrowed from the military — "forward deployed" means you're at the front
+            line, not at headquarters. Palantir coined the engineering version: instead of shipping a
+            product and letting a customer figure it out, you send an engineer into the customer's
+            environment to make it work, and you hold them accountable for the outcome.
+        </p>
+        <p class="text">
+            The AI labs have adopted the model wholesale. At OpenAI the title is Forward Deployed
+            Engineer; at Anthropic the equivalent function sits under Applied AI Engineering. Same
+            job, different letterhead.
+        </p>
+
+        <h2>How it differs from a SWE</h2>
+        <p class="text">
+            The cleanest way I've seen it put: a core engineer builds the product for all users; an
+            FDE builds a production-grade solution for one customer, and owns whether it works.
+        </p>
+        <p class="text">
+            That distinction cascades into everything.
+        </p>
+        <p class="text">
+            <strong>Daily work.</strong> Job postings consistently describe roughly a 60/30/10 split —
+            60% customer-facing time, 30% deployment-specific code, 10% internal work. Read that again
+            if you're a SWE, because it's the whole story. The majority of your day is not in an
+            editor. It's discovery calls, scoping sessions, arguing with a customer's change-advisory
+            board, and explaining to a CISO why your agent needs that API scope. The code you do write
+            is integration code: gluing a model to a legacy SQL database, making it survive their SAML
+            setup, meeting data-residency requirements, and building the eval harness that proves it's
+            working well enough to keep.
+        </p>
+        <p class="text">
+            <strong>Skills.</strong> A SWE is rewarded for depth in a system. An FDE is rewarded for a
+            T-shaped profile: real production engineering ability plus the ability to sit across from a
+            Fortune 500 executive and be credible. The scarcity is entirely in the combination. As one
+            comp report put it bluntly: most strong engineers would rather build products than deploy
+            them inside someone else's environment, and most strong client-facing people lack the
+            technical depth to survive legacy integration work.
+        </p>
+        <p class="text">
+            The other skill nobody lists in the JD: tolerance for ambiguity and for other people's
+            mess. In development, your data is clean and your environment is yours. In a customer
+            environment, records are missing, the schema is undocumented, and the person who built the
+            system left in 2019.
+        </p>
+        <p class="text">
+            <strong>Growth.</strong> This is where I think FDE is genuinely underrated, and it's the
+            reason I keep coming back to it.
+        </p>
+        <p class="text">
+            A SWE's growth curve is depth: bigger systems, harder constraints, more scope. An FDE's
+            growth curve is a judgment about what to build. You learn, viscerally and repeatedly, the
+            difference between a demo and a thing a customer will pay for. You learn what breaks in the
+            last mile. You learn to scope.
+        </p>
+        <p class="text">
+            That's the pre-founder curriculum, and it's the thing a career inside a big lab does not
+            teach you. Palantir's FDE org is famous as a founder factory for exactly this reason. If
+            you want to start a company in the agent space, a year of watching enterprises fail to
+            deploy agents is a better idea-generation machine than any amount of solo brainstorming.
+        </p>
+        <p class="text">
+            The reverse move is also cleaner than people assume: FDEs returning to core engineering
+            carry first-hand knowledge of how customers actually use the product, which informs every
+            architecture decision afterward.
+        </p>
+    </div>
+
+    <div class="container blog main">
+        <h1>2. The demand is real. The supply is the story.</h1>
+
+        <h2>Demand</h2>
+        <p class="text">
+            The growth numbers are genuinely absurd. Depending on whose tracker you believe, FDE
+            postings grew somewhere between 729% and 1,165% year-over-year into 2026. Indeed data
+            cited by one search firm shows a jump from 643 postings in April 2025 to 5,330 in April
+            2026.
+        </p>
+        <p class="text">
+            More telling than the headcount is the capital. In May 2026, OpenAI launched a $10B
+            venture ("The Deployment Company") structured entirely around embedding engineers inside
+            enterprise deployments, backed by TPG, Goldman, SoftBank, and BBVA. Anthropic followed
+            with a $1.5B enterprise services venture with Blackstone and Hellman &amp; Friedman.
+            Salesforce has committed to hiring 1,000 FDEs. Google is hiring hundreds.
+        </p>
+        <p class="text">
+            You don't stand up a $10B vehicle for a hiring fad.
+        </p>
+
+        <h2>Why</h2>
+        <p class="text">
+            The demand has a single, well-documented cause. MIT's NANDA study of 300 public enterprise
+            AI projects found that 95% produced little or no measurable P&amp;L impact.
+        </p>
+        <p class="text">
+            The models worked. The deployments didn't.
+        </p>
+        <p class="text">
+            That failure was not a modeling failure — it was an integration failure. AI systems that
+            couldn't talk to legacy databases, couldn't handle enterprise auth, couldn't meet
+            compliance requirements, couldn't be maintained by the ops team that inherited them. Call
+            it the integration wall.
+        </p>
+        <p class="text">
+            The FDE is the industry's answer to that wall. The labs have concluded, correctly, that
+            their bottleneck is no longer model capability — it's last-mile deployment. Every dollar of
+            frontier-model revenue now runs through someone who can make the thing work inside a
+            customer's mess. That's why FDE comp is benchmarked against research engineers rather than
+            against pre-sales solutions architects.
+        </p>
+        <p class="text">
+            This is also why I think the demand is structurally durable rather than cyclical. It
+            doesn't depend on AI hype continuing. It depends on enterprise software remaining hard to
+            deploy, which has been true for forty years.
+        </p>
+
+        <h2>Supply</h2>
+        <p class="text">
+            Thin, and thin for reasons that don't resolve quickly. The role requires a combination
+            that the industry has never selected for. Engineering pipelines optimize for depth;
+            consulting pipelines optimize for polish. Almost nobody is trained on both.
+        </p>
+    </div>
+
+    <div class="container blog main">
+        <h1>3. So — should a working SWE explore this?</h1>
+        <p class="text">
+            Here's my personal honest read.
+        </p>
+
+        <h2>The case for</h2>
+        <p class="text">
+            If you're an engineer who has quietly noticed that you're good at the parts of the job
+            that aren't coding — the scoping, the stakeholder wrangling, the "actually, here's what
+            they really need" reframe — FDE is the first role that pays you for that without demoting
+            you to non-technical work.
+        </p>
+        <p class="text">
+            If you want to found something, the education is unmatched. You will develop an unfair
+            sense for what people will pay for.
+        </p>
+        <p class="text">
+            And if you work on agents specifically, the technical fit is uncanny. FDE at a lab is
+            mostly: wire an agent into a customer's messy tool surface, make it reliable, and prove
+            it's working. That's orchestration, tool-use infrastructure, and evals — which is a lot of
+            people's day job already, just pointed outward.
+        </p>
+
+        <h2>The case against</h2>
+        <p class="text">
+            Sixty percent of your time is customer-facing. If the deepest satisfaction in your week
+            comes from designing a system, you will feel that loss by month six, and no equity number
+            fixes it. Be honest with yourself here rather than aspirationally optimistic. Also, there
+            is a level and brand risk.
+        </p>
+
+        <h2>The filter I'd apply</h2>
+        <p class="text">
+            Not all FDE roles are the same job, so we shouldn't just evaluate the title — evaluate the
+            shape.
+        </p>
+        <p class="text">
+            Take the FDE role where the product doesn't fully exist yet. Where "forward deployed"
+            means you and the customer co-invent the product, and you own the infrastructure you build.
+            This is the Palantir-in-2010 version, and it's roughly what the labs and the strong
+            applied-AI startups are hiring for. Here, you're writing the platform. The founder-prep
+            value is at its peak. Notably, in that 247-posting dataset, 12% of roles would make you the
+            first FDE at the company — more ambiguity, but far more influence over what the role
+            becomes.
+        </p>
+        <p class="text">
+            Avoid the FDE role where the product is stable and the job is deployment repetition. That's
+            solutions engineering with a better title and a worse work-life balance, and a good
+            engineer will be bored by Q2.
+        </p>
+
+        <h2>The real question</h2>
+        <p class="text">
+            Strip away the comp and the hype, and it comes down to one thing that no market data can
+            answer for you:
+        </p>
+        <p class="text">
+            <em>Do you actually enjoy being in the room with the customer — or is that a cost you'd
+            tolerate for the learning?</em>
+        </p>
+        <p class="text">
+            If it's a cost, you'll burn out, because it's 60% of the job. If you enjoy it, this is
+            arguably the highest-leverage seat in the industry right now, because you'll be standing
+            exactly where the money is stuck.
+        </p>
+        <p class="text">
+            I'm still working out my own answer. But I've stopped thinking of FDE as a lesser
+            engineering role, and I'd encourage anyone dismissing it on those grounds to look again.
+        </p>
+        <p class="text">
+            <em>If you've made this move — from core engineering into a forward-deployed role, or back
+            out of one — I'd love to hear how it went.</em>
+        </p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>
+                © 2026 Ziyun Zhao. This website is built on the
+                <a href="https://shikun.io/projects/clarity">Clarity Template</a>.
+            </p>
+        </div>
+    </footer>
+
+    <script src="../clarity/clarity.js"></script>
+    <script src="../assets/scripts/main.js"></script>
+</body>
+</html>
