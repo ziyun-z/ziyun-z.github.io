@@ -1,0 +1,35 @@
+name: Update sitemap
+
+# Regenerate sitemap.xml whenever site content changes. Pushes that only touch
+# sitemap.xml (i.e. this workflow's own commit) are ignored, so there is no loop.
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'sitemap.xml'
+
+permissions:
+  contents: write
+
+jobs:
+  sitemap:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # full history so per-file lastmod is accurate
+
+      - name: Generate sitemap
+        run: python3 scripts/generate_sitemap.py
+
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- sitemap.xml; then
+            echo "sitemap.xml unchanged; nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sitemap.xml
+          git commit -m "chore: update sitemap.xml [skip ci]"
+          git push
