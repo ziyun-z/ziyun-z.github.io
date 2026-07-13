@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Harness Is the Product — Ziyun Zhao</title>
+    <meta name="description" content="An agent is a model plus a harness — and the harness is where most of the leverage lives. What a harness actually is, why it shapes agent behavior more than the model, and how to build a good one.">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <meta name="robots" content="all">
+    <link rel="canonical" href="https://ziyun-z.github.io/blog/the-harness-is-the-product.html">
+    <meta content="article" property="og:type">
+    <meta content="The Harness Is the Product" property="og:title">
+    <meta content="https://ziyun-z.github.io/blog/the-harness-is-the-product.html" property="og:url">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "The Harness Is the Product",
+        "datePublished": "2026-01-24",
+        "dateModified": "2026-01-24",
+        "author": {
+            "@type": "Person",
+            "name": "Ziyun Zhao",
+            "url": "https://ziyun-z.github.io/"
+        },
+        "mainEntityOfPage": "https://ziyun-z.github.io/blog/the-harness-is-the-product.html",
+        "description": "An agent is a model plus a harness — and the harness is where most of the leverage lives. What a harness actually is, why it shapes agent behavior more than the model, and how to build a good one."
+    }
+    </script>
+
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/stylesheets/main_free.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../clarity/clarity.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/stylesheets/custom.css" />
+    <link href="../assets/fontawesome-free-7.2.0-web/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Top navigation -->
+    <nav class="site-nav">
+        <a class="brand" href="../index.html">Ziyun Zhao</a>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../about.html">About</a>
+            <a href="../index.html#blog">Blog</a>
+            <a href="../gallery.html">Gallery</a>
+        </div>
+    </nav>
+
+    <!-- Post title -->
+    <div class="container blog" id="first-content" style="background-color: #E0E4E6;">
+        <div class="blog-title no-cover">
+            <div class="blog-intro">
+                <div>
+                    <h1 class="title">The Harness Is the Product</h1>
+                    <p class="author post-meta">Ziyun Zhao · 24 January 2026 · 7 min read</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Post body -->
+    <div class="container blog main first">
+        <p class="text">
+            For two years we argued about models. Which one reasons better, which one hallucinates
+            less, which one writes cleaner React. It was a fine argument. It was also, in hindsight, an
+            argument about roughly half the system.
+        </p>
+        <p class="text">
+            The other half finally has a name. Anthropic's <em>Effective harnesses for long-running
+            agents</em> gave it the clearest public engineering writeup. This is highly related to what
+            I'm doing now, which is the orchestration layer around the Gemini Live product: which tools
+            were visible, how to select relevant tools, how context got assembled, how to design the
+            human-in-the-loop, and how we knew whether any of it was actually working. That layer is
+            the harness. And I've come to believe it's where most of the leverage in agent engineering
+            currently lives.
+        </p>
+        <p class="text">
+            This post is my attempt to say what a harness is, why it determines agent behavior more
+            directly than most people expect, and what I've learned about building good ones.
+        </p>
+    </div>
+
+    <div class="container blog main">
+        <h1>The one-line definition</h1>
+        <p class="text">
+            <em>Agent = Model + Harness. If you're not the model, you're the harness.</em>
+        </p>
+        <p class="text">
+            A raw model is not an agent. It's a function from tokens to tokens. It becomes an agent
+            when something wraps it and gives it four things it cannot give itself: state, the ability
+            to act, feedback on those actions, and constraints it cannot talk its way out of.
+        </p>
+        <p class="text">
+            Everything that isn't model weights is harness. The system prompt. The tool schemas. The
+            sandboxed environment. The judge that decides whether the task is done. Claude Code, Codex,
+            Cursor — these are all harnesses, and a striking amount of the time they're harnessed over
+            the same models.
+        </p>
+        <p class="text">
+            Which leads to the claim that should reorganize how you spend your week:
+        </p>
+        <p class="text">
+            <em>A decent model in a great harness beats a great model in a bad harness.</em>
+        </p>
+    </div>
+
+    <div class="container blog main">
+        <h1>Anatomy: what's actually in there</h1>
+        <p class="text">
+            Harnesses look sprawling until you notice they're all solving the same five problems.
+            Here's the decomposition I use.
+        </p>
+
+        <h2>1. Context assembly — what the model perceives</h2>
+        <p class="text">
+            The context window is not a cache. It is the agent's entire sensory world for this turn.
+            Whatever isn't in it does not exist.
+        </p>
+        <p class="text">
+            So the harness is, first and above all, a perception system: it decides what the model
+            sees, in what order, at what fidelity. System prompt, memory, retrieved documents, function
+            calls and responses, conversation history. Every token here is a choice, and every choice
+            competes with every other choice for the model's attention.
+        </p>
+
+        <h2>2. Tool surface — what the model can do</h2>
+        <p class="text">
+            Tool definitions are the action space. They're also — and this is under-appreciated —
+            context: each relevant tool's name, description, and schema gets stamped into the prompt.
+            Your tools are prompt engineering whether you meant them to be or not. How to select
+            relevant tools is another interesting topic that deserves a separate blog just for it.
+        </p>
+
+        <h2>3. Control flow — the loop</h2>
+        <p class="text">
+            An agent runs tools in a loop toward a goal. The loop is where the interesting decisions
+            hide. When do we re-plan? What happens on tool failure — retry, fall back, escalate,
+            surface to the human? Do we spawn subagents in parallel? When do we stop?
+        </p>
+
+        <h2>4. Durable state — memory that survives the context window</h2>
+        <p class="text">
+            Anthropic's framing is the one that stuck with me: a long-running agent is a software
+            project staffed by engineers working shifts, and each new engineer arrives with total
+            amnesia. Compaction alone doesn't fix this. Their solution is beautifully unglamorous — a
+            progress file, a git history, a structured feature list in JSON, an <code>init.sh</code>.
+            Files on disk.
+        </p>
+
+        <h2>5. Guardrails — what the agent cannot do</h2>
+        <p class="text">
+            Sandboxes, permission gates, command allow-lists, network isolation, human approval before
+            irreversible actions.
+        </p>
+        <p class="text">
+            And running underneath all six: observability. Traces, logs, cost and latency metering.
+            Without it you cannot debug the harness, and — as I'll argue — if you can't debug the
+            harness you can't improve it.
+        </p>
+    </div>
+
+    <div class="container blog main">
+        <h1>So how do you build a good one?</h1>
+        <p class="text">
+            Seven things I'd actually tell a team.
+        </p>
+
+        <h2>1. Build the eval before you build the harness.</h2>
+        <p class="text">
+            This is my strongest opinion. Every good harness practice presupposes that you can tell
+            whether a change helped. That is an eval problem, and it is genuinely hard, because agent
+            trajectories are multi-turn and humans can give the best judgement but it's too costly and
+            slow.
+        </p>
+        <p class="text">
+            Practically: capture full traces from day one. Build a held-out set of real failures. Get
+            an LLM-as-a-judge rubric you've actually validated against human labels (an unvalidated
+            judge is a random number generator with good manners). Only then start changing the
+            harness.
+        </p>
+
+        <h2>2. Work backwards from behavior.</h2>
+        <p class="text">
+            For every component, name the behavior it delivers that the model can't deliver alone.
+            Durable work across sessions → filesystem + git. Safe execution → sandbox. Performance over
+            long horizons → compaction. If you can't name the behavior, the component is decoration and
+            it's costing you context.
+        </p>
+
+        <h2>3. Error messages are prompts.</h2>
+        <p class="text">
+            A tool failure isn't an exception — it's text that goes straight back into the context
+            window and becomes the model's next perception. <code>KeyError: 'user_id'</code> and
+            <code>no user_id in session; call authenticate_user first</code> produce completely
+            different recovery behavior from the same model. Your error surface is prompt engineering
+            you didn't know you were doing.
+        </p>
+
+        <h2>4. Enforce in code what you'd otherwise request in the prompt.</h2>
+        <p class="text">
+            A constraint in the system prompt is a suggestion. A constraint in the sandbox is a
+            constraint. Every "please always…" in your prompt is a bug report against your harness — it
+            means you're paying tokens and getting probabilistic compliance for something a wrapper
+            could guarantee for free. Good rule: if a for-loop can do it, don't ask the model to.
+        </p>
+
+        <h2>5. Debug the harness with a failure taxonomy, not vibes.</h2>
+        <p class="text">
+            When a trajectory fails, the question isn't "what do I add to the prompt." It's which
+            component failed: did the model <em>not know</em> (perception — context assembly),
+            <em>not able</em> (action — missing or badly-shaped tool), <em>not allowed</em> (guardrail
+            misfire), or <em>know-and-able-but-chose-wrong</em> (genuinely a model or tool-description
+            problem)? Most people reflexively patch the system prompt when the real fix is a tool that
+            doesn't exist. The taxonomy maps one-to-one onto your six components, which is a nice payoff
+            for the anatomy section.
+        </p>
+    </div>
+
+    <div class="container blog main">
+        <h1>Where this goes</h1>
+        <p class="text">
+            The frontier of AI engineering has quietly become a system problem, dressed up in ML
+            clothes. The people who will build the best agents over the next few years are not
+            necessarily the ones with the best intuitions about attention heads. They're the ones who
+            know how to design a runtime.
+        </p>
+        <p class="text">
+            The model is the engine. The harness is the wheel. Nobody has ever gotten anywhere by
+            sitting on an engine.
+        </p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>
+                © 2026 Ziyun Zhao. This website is built on the
+                <a href="https://shikun.io/projects/clarity">Clarity Template</a>.
+            </p>
+        </div>
+    </footer>
+
+    <script src="../clarity/clarity.js"></script>
+    <script src="../assets/scripts/main.js"></script>
+</body>
+</html>
